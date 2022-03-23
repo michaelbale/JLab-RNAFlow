@@ -1,0 +1,14 @@
+name: ATACFlow-1.0
+channels:
+ - conda-forge
+ - bioconda
+ - defaults
+dependencies:
+ - python
+ - fastqc
+ - samtools
+ - bamtools
+ - deeptools
+ - multiqc
+ - trimmomatic
+ - kallisto
