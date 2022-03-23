@@ -195,8 +195,8 @@ process kallisto {
 	
 	script:
 	def threads = task.cpus - 2
+	if(threads > 0)
 	"""
-	if($threads > 0) {
 	   kallisto quant \
 		 -i $kallIndex \
 		 -o . \
@@ -206,16 +206,19 @@ process kallisto {
 		 --genomebam \
 		 -c $chrInfo \
 		 <(zcat ${reads[0]}) <(zcat ${reads[1]})
-	} else {
-		kallisto quant \
-		  -i $kallIndex \
-		  -o . \
-		  -b $nBoot \
-		  -g $params.gtf \
-		  --genomebam \
-		  -c $chrInfo \
-		  ${reads[0]} ${reads[1]}
-	}
+	"""
+	else
+	"""
+	kallisto quant \
+	  -i $kallIndex \
+	  -o . \
+	  -b $nBoot \
+	  -g $gtf \
+	  --genomebam \
+	  -c $chrInfo \
+	  ${reads[0]} ${reads[1]}
+	"""
+	"""
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
