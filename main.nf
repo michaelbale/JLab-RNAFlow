@@ -206,6 +206,10 @@ process kallisto {
 		 --genomebam \
 		 -c $chrInfo \
 		 <(zcat ${reads[0]}) <(zcat ${reads[1]})
+	
+	mv abundance.h5 "${pair_id}_abundance.h5"
+	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
+	mv pseudoalignments.bam.bai "${pair_id}_pseudoalignments.bam.bai"
 	"""
 	else
 	"""
@@ -217,8 +221,6 @@ process kallisto {
 	  --genomebam \
 	  -c $chrInfo \
 	  ${reads[0]} ${reads[1]}
-	"""
-	"""
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
