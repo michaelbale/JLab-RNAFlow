@@ -1,7 +1,7 @@
 # JLab-ATACFlow #
 
 
-## Assay for Transposase-Accessible Chromatin using Sequencing (ATACseq) ##
+## RNA Sequencing ##
 
 
 ATACseq is a sequencing technique taking advantage of hyperactive Tn5 transposase to "tagment" so-called Transposase-Accessible chromatin by inserting sequencing adapters into open regions of chromatin. Tagmented DNA can be amplified and sequenced for downstream analysis of differential regions of open chromatin as well as transcription factor binding sites.

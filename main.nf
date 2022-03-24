@@ -194,7 +194,7 @@ process kallisto {
 	tuple $pair_id, path("${pair_id}_pseudoalignments.bam.bai"), path("${pair_id}_pseudoalignments.bam") into genomebam_ch
 	
 	script:
-	def threads = task.cpus - 2
+	def threads = task.cpus - 4
 	if(threads > 0)
 	"""
 	   kallisto quant \
@@ -202,7 +202,7 @@ process kallisto {
 		 -o . \
 		 -b $nBoot \
 		 -t $threads \
-		 <(zcat ${reads[0]}) <(zcat ${reads[1]})
+		 ${reads[0]} ${reads[1]}
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	"""
