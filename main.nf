@@ -193,9 +193,11 @@ process kallisto {
 		 -g $gtf \
 		 -c $chrInfo \
 		 -t $threads \
-		 ${reads[0]} ${reads[1]}
+		 ${reads[0]} ${reads[1]} > "${pair_id}_kall.log"
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
+	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
+	mv pseudoalignments.bam.bai "${pair_id}_pseudoalignments.bam.bai"
 	"""
 	else
 	"""
@@ -206,9 +208,11 @@ process kallisto {
 	  --genomebam \
 	  -g $gtf \
 	  -c chrInfo \
-	  ${reads[0]} ${reads[1]}
+		 ${reads[0]} ${reads[1]} > "${pair_id}_kall.log"
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
+	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
+	mv pseudoalignments.bam.bai "${pair_id}_pseudoalignments.bam.bai"
 	"""
 }
 
