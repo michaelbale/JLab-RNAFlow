@@ -254,8 +254,8 @@ process makeBigwig{
 	script:
 	"""
 	bamCoverage -p $task.cpus \
-	  --bam ${finalBam} \
-	  -o ${sampleID}_CPMnorm.bw \
+	  --bam ${bam} \
+	  -o ${sampleID}_RPKMnorm.bw \
 	  -bs 10 --smoothLength 50 \
 	  --normalizeUsing RPKM \
 	  --ignoreForNormalization chrX chrY  \
