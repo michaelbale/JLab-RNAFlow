@@ -15,10 +15,12 @@ version = 0.5
 def helpMessage() {
 	log.info """
 		=================================================
-            A T A C s e q  P I P E L I N E v${version}
+            R N A  s e q  P I P E L I N E v${version}
         =================================================
 		Author: Michael J. Bale (mib4004@med.cornell.edu)
     Usage:
+	The typical command for running this pipeline is as folls:
+	nextflow run michaelbale/JLab-RNAFlow --input 'project/*{R1,R2}*' --name myProject --genome mouse -profile singularity
 --input						  Path to input data (must be surrounded with quotes)
 
 --genome					  Name of Genomes reference (current supported: mouse10 -- mm10, mouse39 -- mm39, human -- hg38)
@@ -28,31 +30,17 @@ def helpMessage() {
                               for WCM default -- singularity is recommended, but conda works while docker 
                               does not. For minimal - use conda.
 
---peaks		  			      Specifies to call peaks using HMMRATAC (default: --no-peaks)
-
---minReplicates			  Requires --peaks; minimum number of replicates required for overlapping of 
-							  individual peak calls to consensus peak calls using ChIP-r.
-
-
 Options:
 
 --executorConfig              Path to config file that contains specifics for execution. 
                               Will default to WCM SCU-specific parameters. N.B. for
                               single-threaded running use --executorConfig conf/minimal.config
 
---singleSample                Specifies that the input is a single sample and will not generate a PCA graph
-
---PCATitle                    Title to be included in PCA graph; must be surrounded with quotes
-
 --catLanes                    Tells CnRFlow to take input files and concatenate lanes into single fastq files
 
+--boot						  Number of inferential replicates for kallisto to run; default: 100
+
 --name                        Project Name; cannot have whitespace characters
-
---addBEDFilesProfile          Path to csv file with info on additional BED files for generating
-                              Sunset-style profile plots; csv format: rName,BEDPath
-
---addBEDFilesRefPoint         Path to csv file with info on additional BED files for generating
-                              Torndao-style region profile plots; csv format: pName,BEDPath,PlusMinus,pLabel
 
 --workDir                     Name of folder to output concatenated fastq files to (not used unless --catLanes)
 
@@ -95,7 +83,7 @@ if (params.citations) {
 
 log.info """\
 		=================================================
-            A T A C S E Q   P I P E L I N E v${version}
+            R N A S E Q    P I P E L I N E v${version}
         =================================================
 		Author: Michael J. Bale (mib4004@med.cornell.edu)
 		
