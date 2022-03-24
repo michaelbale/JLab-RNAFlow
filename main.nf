@@ -179,7 +179,7 @@ process kallisto {
 	output:
 	path("${pair_id}_abundance.h5") into kallH5_ch
 	path("${pair_id}_kall.log") into kallLog_ch
-	tuple $pair_id, path("${pair_id}_pseudoalignments.bam.bai"), path("${pair_id}_pseudoalignments.bam") into genomebam_ch
+	tuple pair_id, path("${pair_id}_pseudoalignments.bam.bai"), path("${pair_id}_pseudoalignments.bam") into genomebam_ch
 	
 	script:
 	def threads = task.cpus - 4
@@ -193,7 +193,7 @@ process kallisto {
 		 -g $gtf \
 		 -c $chrInfo \
 		 -t $threads \
-		 ${reads[0]} ${reads[1]} > "${pair_id}_kall.log"
+		 ${reads[0]} ${reads[1]} 2> "${pair_id}_kall.log"
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
@@ -208,7 +208,7 @@ process kallisto {
 	  --genomebam \
 	  -g $gtf \
 	  -c chrInfo \
-		 ${reads[0]} ${reads[1]} > "${pair_id}_kall.log"
+		 ${reads[0]} ${reads[1]} 2> "${pair_id}_kall.log"
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
@@ -236,7 +236,7 @@ process fastqc {
 
 
 
-/*
+
 process makeBigwig{
 
 	tag "Creating ${sampleID} bigwig"
@@ -262,7 +262,7 @@ process makeBigwig{
 	  --skipNonCoveredRegions 
 	"""
 }
-*/
+
 
 process multiqc {
 	publishDir "$params.outdir/results", mode:'move'
