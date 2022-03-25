@@ -191,7 +191,6 @@ process kallisto {
 		 -b $nBoot \
 		 --genomebam \
 		 -g $gtf \
-		 -c $chrInfo \
 		 -t $threads \
 		 ${reads[0]} ${reads[1]} 2> "${pair_id}_kall.log"
 	
@@ -207,8 +206,7 @@ process kallisto {
 	  -b $nBoot \
 	  --genomebam \
 	  -g $gtf \
-	  -c chrInfo \
-		 ${reads[0]} ${reads[1]} 2> "${pair_id}_kall.log"
+	  ${reads[0]} ${reads[1]} 2> "${pair_id}_kall.log"
 	
 	mv abundance.h5 "${pair_id}_abundance.h5"
 	mv pseudoalignments.bam "${pair_id}_pseudoalignments.bam"
