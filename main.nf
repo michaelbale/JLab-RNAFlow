@@ -246,7 +246,7 @@ process makeBigwig{
 	
 	
 	output:
-	file("${sampleID}_CPMnorm.bw")
+	file("${sampleID}_RPKMnorm.bw")
 
 	//TODO: add -p $task.cpus
 	script:
